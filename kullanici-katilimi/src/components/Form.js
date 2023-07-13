@@ -6,10 +6,10 @@ import axios from "axios";
 const sema = Yup.object().shape({
   firstname: Yup.string()
     .required("FirstName is Required")
-    .min(3, "Name must be at least 3 characters long."),
+    .min(3, "Firstname must be at least 3 characters long."),
   lastname: Yup.string()
-    .required("FirstName is Required")
-    .min(3, "Name must be at least 3 characters long."),
+    .required("Lastname is Required")
+    .min(3, "Lastname must be at least 3 characters long."),
   email: Yup.string()
     .email("Must be a valid email address.")
     .required("Must include email address."),
@@ -23,11 +23,11 @@ const sema = Yup.object().shape({
 // Yup'u kullanarak, en az 2 adet doğrulama ve hata doğrulamada varsa ekranda gösterilecek hata mesajı ekleyin.
 const Form = () => {
   const [formData, setFormData] = useState({
-    firstname: "denemead",
-    lastname: "denemesoyad",
-    email: "deneme@deneme.com",
-    password: "denemepass",
-    terms: true,
+    firstname: "", //denemead
+    lastname: "", //denemesoyad
+    email: "", //deneme@deneme.com
+    password: "", //denemepass
+    terms: false,
   });
   const [errors, setErrors] = useState({
     firstname: "",
@@ -92,6 +92,7 @@ const Form = () => {
         <label>
           Ad :
           <input
+            data-testid="firstname"
             type="text"
             name="firstname"
             value={formData.firstname}
@@ -104,6 +105,7 @@ const Form = () => {
         <label>
           Soyad :
           <input
+            data-testid="lastname"
             type="text"
             name="lastname"
             value={formData.lastname}
@@ -116,6 +118,7 @@ const Form = () => {
         <label>
           Email :
           <input
+            data-testid="email"
             type="text"
             name="email"
             value={formData.email}
@@ -128,6 +131,7 @@ const Form = () => {
         <label>
           Şifre :
           <input
+            data-testid="password"
             type="password"
             name="password"
             value={formData.password}
@@ -140,6 +144,7 @@ const Form = () => {
         <label>
           Kullanım Şartları (Terms of Service) {/*(checkbox)*/}
           <input
+            data-testid="terms"
             type="checkBox"
             value="TermsofService"
             name="terms"
@@ -151,7 +156,7 @@ const Form = () => {
         <span className="form-error">{errors.terms}</span>
         <br />
 
-        <button type="submit" disabled={!isFormValid} name="button">
+        <button data-testid="submit" type="submit" disabled={!isFormValid}>
           Gönder butonu (formu göndermek için).
         </button>
       </form>
