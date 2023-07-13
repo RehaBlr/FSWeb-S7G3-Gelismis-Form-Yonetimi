@@ -151,7 +151,7 @@ const Form = () => {
         <span className="form-error">{errors.terms}</span>
         <br />
 
-        <button type="submit" disabled={!isFormValid}>
+        <button type="submit" disabled={!isFormValid} name="button">
           Gönder butonu (formu göndermek için).
         </button>
       </form>
